@@ -4,7 +4,7 @@ import { View, Text } from 'react-native';
 function DetailScreen() {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>qqq!</Text>
+      <Text>qq!</Text>
     </View>
   );
 }
