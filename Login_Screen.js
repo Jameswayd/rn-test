@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, ScrollView } from 'react-native';
+//import Svg, { Path } from 'react-native-svg';
+//import googleIcon from './assets/icons8-google.svg';
 
 export function Login_Screen() {
   const [email, setEmail] = useState('');
@@ -79,7 +81,7 @@ export function Login_Screen() {
             <Image source={require('./assets/twitter.png')} style={styles.socialIcon} />
           </TouchableOpacity>
           <TouchableOpacity style={styles.socialButton}>
-            <Image source={require('./assets/google.png')} style={styles.socialIcon} />
+          <Image source={require('./assets/google.png')} style={styles.socialIcon} />
           </TouchableOpacity>
         </View>
       </ScrollView>
@@ -96,10 +98,10 @@ const styles = StyleSheet.create({
     height: '100%', // 設定高度為螢幕高度
   },
   logo: {
-    width: 230,
-    height: 230,
+    width: 250,
+    height: 250,
     marginTop: 20,
-    marginLeft: '20%',
+    marginLeft: '19%',
     marginBottom: 20,
   },
   inputContainer: {
@@ -179,12 +181,17 @@ const styles = StyleSheet.create({
     height: 60,
     borderRadius: 30,
     backgroundColor: '#FFFFF',
+    borderWidth: 1,
+    borderColor: '#FFFFFF',
     alignItems: 'center',
     justifyContent: 'center',
+    marginTop: '1%', 
+    marginRight: '10%', 
+    marginLeft:'10%', 
   },
   socialIcon: {
-    width: 30,
-    height: 30,
+    width: 60,
+    height: 60,
   },
 });
 export default Login_Screen;
