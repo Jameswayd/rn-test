@@ -12,7 +12,16 @@ function App() {
     <NavigationContainer>
       <Tab.Navigator>
       <Tab.Screen name="登入" component={Login_Screen} />
-        <Tab.Screen name="Home" component={HomeScreen} />
+        <Tab.Screen name="Home" component={HomeScreen} 
+        options={{
+          headerStyle: {
+            backgroundColor: '#ECF5FF',
+          },
+          tabBarStyle: { 
+            backgroundColor: '#ECF5FF'  
+          }
+        }}
+      />
       </Tab.Navigator>
     </NavigationContainer>
   );
