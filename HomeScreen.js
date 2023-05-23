@@ -32,7 +32,7 @@ const HomeScreen = () => {
   return (
     <View style={styles.container}>
       <View style={styles.selectBar}>
-        <Text style={styles.selectText}>select function</Text>
+        <Text style={styles.selectText}>Select function</Text>
       </View>
       <View style={styles.buttonContainer}>
         <View style={styles.row}>
@@ -62,7 +62,7 @@ const HomeScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white', 
+    backgroundColor: '#ECF5FF', 
   },
   selectBar: {
     marginTop: '15%',
@@ -70,17 +70,12 @@ const styles = StyleSheet.create({
     height: 50,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'white',
+    backgroundColor: '#ECF5FF',
   },
   selectText: {
     fontSize: 32,
     fontWeight: 'bold',
     color: 'black',
-    shadowColor: 'rgba(0, 0, 0, 0.1)', // 陰影顏色
-    shadowOffset: { width: 0, height: 2 }, // 陰影偏移量
-    shadowOpacity: 0.8, // 陰影透明度
-    shadowRadius: 2, // 陰影半徑
-    //elevation: 2, // 安卓陰影效果
   },
   buttonContainer: {
     flex: 1,
@@ -105,10 +100,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     resizeMode: 'contain', // 調整圖片大小以完全容納在按鈕內
-    shadowColor: 'rgba(0, 0, 0, 0.4)', // 陰影顏色
+    shadowColor: 'rgba(70, 163, 255, 0.3)', // 陰影顏色
     shadowOffset: { width: 0, height: 2 }, // 陰影偏移量
     shadowOpacity: 0.8, // 陰影透明度
-    shadowRadius: 2, // 陰影半徑
+    shadowRadius: 4, // 陰影半徑
     //elevation: 2, // 安卓陰影效果
   },
   selectedButton: {
@@ -116,8 +111,9 @@ const styles = StyleSheet.create({
     borderWidth: 4,
   },
   buttonImage: {
-    width: '80%',
-    height: '80%',
+    width: '60%',
+    height: '60%',
+    marginBottom:'10%',
     backgroundColor: 'white',
     resizeMode: 'contain', // 調整圖片大小以完全容納在按鈕內
     shadowColor: 'rgba(0, 0, 0, 0.1)', // 陰影顏色
