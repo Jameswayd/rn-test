@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, ScrollView } from 'react-native';
 //import Svg, { Path } from 'react-native-svg';
 //import googleIcon from './assets/icons8-google.svg';
@@ -8,12 +9,14 @@ export function Login_Screen() {
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
   const [error, setError] = useState(false);
+  const navigation = useNavigation();
 
   const handleLogin = () => {
     // 假設 email 和 password 都是 "admin"，就會成功登入，否則顯示錯誤訊息
     if (email === 'admin' && password === 'admin') {
       console.log('Login success!');
       setError(false);
+      navigation.navigate('Home');
     } else {
       console.log('Login failed!');
       setError(true);
@@ -26,6 +29,7 @@ export function Login_Screen() {
 
   const handleCreateAccount = () => {
     // 處理創建帳號邏輯
+    navigation.navigate('註冊');
   };
 
   return (
@@ -81,7 +85,7 @@ export function Login_Screen() {
             <Image source={require('./assets/twitter.png')} style={styles.socialIcon} />
           </TouchableOpacity>
           <TouchableOpacity style={styles.socialButton}>
-          <Image source={require('./assets/google.png')} style={styles.socialIcon} />
+            <Image source={require('./assets/google.png')} style={styles.socialIcon} />
           </TouchableOpacity>
         </View>
       </ScrollView>
@@ -185,9 +189,9 @@ const styles = StyleSheet.create({
     borderColor: '#FFFFFF',
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: '1%', 
-    marginRight: '10%', 
-    marginLeft:'10%', 
+    marginTop: '1%',
+    marginRight: '10%',
+    marginLeft: '10%',
   },
   socialIcon: {
     width: 60,
@@ -195,4 +199,3 @@ const styles = StyleSheet.create({
   },
 });
 export default Login_Screen;
-
