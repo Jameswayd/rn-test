@@ -1,19 +1,20 @@
 import React from 'react';
-import { View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from './HomeScreen.js';
-import Login_Screen from './Login_Screen.js';
+import LoginScreen from './LoginScreen.js';
+import Registration_interface from './Registration_interface.js';
 
-const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
 
 function App() {
   return (
     <NavigationContainer>
-      <Tab.Navigator>
-      <Tab.Screen name="登入" component={Login_Screen} />
-        <Tab.Screen name="Home" component={HomeScreen} />
-      </Tab.Navigator>
+      <Stack.Navigator>
+        <Stack.Screen name="登入" component={LoginScreen} />
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="註冊" component={Registration_interface} />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }
