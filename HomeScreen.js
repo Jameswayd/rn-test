@@ -62,7 +62,7 @@ const HomeScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: '#ECF5FF',
   },
   selectBar: {
     marginTop: '15%',
