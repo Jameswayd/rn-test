@@ -44,7 +44,7 @@ const RegisterScreen = () => {
   const Registercheck = () => {
     checkPasswordMatch();
   };
-  
+
 
   const validateName = () => {
     if (name.trim() === '') {
@@ -181,8 +181,8 @@ const RegisterScreen = () => {
             )}
           </View>
         </View>
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText} onPress={Registercheck} >下一頁</Text>
+        <TouchableOpacity style={styles.button} onPress={Registercheck}>
+          <Text style={styles.buttonText}>下一頁</Text>
         </TouchableOpacity>
       </ScrollView>
     </View>
@@ -234,7 +234,7 @@ const styles = {
     width: 20,
     height: 20,
     marginLeft: 10,
-    marginTop:5,
+    marginTop: 5,
   },
   errorText: {
     color: 'red',
