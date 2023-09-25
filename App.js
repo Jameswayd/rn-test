@@ -11,12 +11,27 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="登入" component={LoginScreen} />
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="註冊" component={Registration_interface} />
+        <Stack.Screen
+          name="登入"
+          component={LoginScreen}
+        />
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{
+            headerStyle: {
+              backgroundColor: '#ECF5FF', 
+            },
+          }}
+        />
+        <Stack.Screen
+          name="註冊"
+          component={Registration_interface}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
 
 export default App;
+
