@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from './HomeScreen.js';
 import LoginScreen from './LoginScreen.js';
 import Registration_interface from './Registration_interface.js';
+import Registration_interface2 from './Registration_interface2.js';
 
 const Stack = createStackNavigator();
 
@@ -20,13 +21,17 @@ function App() {
           component={HomeScreen}
           options={{
             headerStyle: {
-              backgroundColor: '#ECF5FF', 
+              backgroundColor: '#ECF5FF',
             },
           }}
         />
         <Stack.Screen
           name="註冊"
           component={Registration_interface}
+        />
+        <Stack.Screen
+          name="註冊二"
+          component={Registration_interface2}
         />
       </Stack.Navigator>
     </NavigationContainer>
