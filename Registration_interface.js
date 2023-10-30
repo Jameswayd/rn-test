@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
 import {
   ScrollView,
   View,
@@ -21,6 +22,7 @@ const RegisterScreen = () => {
   const [isNameValid, setNameValid] = useState(true);
   const [isPhoneNumberValid, setPhoneNumberValid] = useState(true);
   const [isEmailValid, setEmailValid] = useState(true);
+  const navigation = useNavigation();
 
   const checkPasswordMatch = () => {
     if (password !== confirmPassword) {
@@ -43,6 +45,7 @@ const RegisterScreen = () => {
   };
   const Registercheck = () => {
     checkPasswordMatch();
+    navigation.navigate('註冊二');
   };
 
 
