@@ -1,22 +1,54 @@
 import React, { useState } from 'react';
-import RadioButtons from 'react-native-radio-buttons';
-import {
-  ScrollView,
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  Image,
-} from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, ScrollView, Image, StyleSheet } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 const RegisterScreen2 = () => {
   const [emergencyContact, setEmergencyContact] = useState('');
-  const [gender, setGender] = useState(''); // 'Male' or 'Female'
+  const [gender, setGender] = useState('');
   const [height, setHeight] = useState('');
   const [weight, setWeight] = useState('');
+  const [errorGender, setErrorGender] = useState('');
+  const [errorHeight, setErrorHeight] = useState('');
+  const [errorWeight, setErrorWeight] = useState('');
+  const [errorEmergencyContact, setErrorEmergencyContact] = useState('');
+  const navigation = useNavigation();
 
   const Registercheck = () => {
-    // 在这里添加处理注册检查的逻辑
+    // 在這裡新增處理註冊檢查的邏輯
+    let isValid = true;
+
+    if (!emergencyContact) {
+      setErrorEmergencyContact('請填寫緊急聯絡電話');
+      isValid = false;
+    } else {
+      setErrorEmergencyContact('');
+    }
+
+    if (!gender) {
+      setErrorGender('請選擇性別');
+      isValid = false;
+    } else {
+      setErrorGender('');
+    }
+
+    if (!height) {
+      setErrorHeight('請填寫身高');
+      isValid = false;
+    } else {
+      setErrorHeight('');
+    }
+
+    if (!weight) {
+      setErrorWeight('請填寫體重');
+      isValid = false;
+    } else {
+      setErrorWeight('');
+    }
+
+    if (isValid) {
+      // 所有空格都通過驗證，可以跳到下一個畫面
+      navigation.navigate('註冊三');
+    }
   };
 
   return (
@@ -43,17 +75,40 @@ const RegisterScreen2 = () => {
               value={emergencyContact}
               onChangeText={(text) => {
                 setEmergencyContact(text);
+                setErrorEmergencyContact('');
               }}
             />
+            {errorEmergencyContact ? <Text style={styles.errorText}>{errorEmergencyContact}</Text> : null}
           </View>
           <View style={styles.formGroup}>
             <Text style={styles.label}>性別</Text>
-            <RadioButtons
-              options={['男', '女']}
-              onSelectionChange={(option) => {
-                setGender(option);
-              }}
-            />
+            <View style={styles.genderButtons}>
+              <TouchableOpacity
+                style={[
+                  styles.genderButton,
+                  gender === '男' ? { backgroundColor: '#7b7b8a' } : null,
+                ]}
+                onPress={() => {
+                  setGender('男');
+                  setErrorGender('');
+                }}
+              >
+                <Text>男</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={[
+                  styles.genderButton,
+                  gender === '女' ? { backgroundColor: '#7b7b8a' } : null,
+                ]}
+                onPress={() => {
+                  setGender('女');
+                  setErrorGender('');
+                }}
+              >
+                <Text>女</Text>
+              </TouchableOpacity>
+            </View>
+            {errorGender ? <Text style={styles.errorText}>{errorGender}</Text> : null}
           </View>
           <View style={styles.formGroup}>
             <Text style={styles.label}>身高 (cm)</Text>
@@ -63,8 +118,10 @@ const RegisterScreen2 = () => {
               value={height}
               onChangeText={(text) => {
                 setHeight(text);
+                setErrorHeight('');
               }}
             />
+            {errorHeight ? <Text style={styles.errorText}>{errorHeight}</Text> : null}
           </View>
           <View style={styles.formGroup}>
             <Text style={styles.label}>體重 (kg)</Text>
@@ -74,8 +131,10 @@ const RegisterScreen2 = () => {
               value={weight}
               onChangeText={(text) => {
                 setWeight(text);
+                setErrorWeight('');
               }}
             />
+            {errorWeight ? <Text style={styles.errorText}>{errorWeight}</Text> : null}
           </View>
         </View>
         <TouchableOpacity style={styles.button} onPress={Registercheck}>
@@ -85,8 +144,7 @@ const RegisterScreen2 = () => {
     </View>
   );
 };
-// Styles remain the same
-const styles = {
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
@@ -103,7 +161,6 @@ const styles = {
   logo: {
     width: 46,
     height: 36,
-    marginTop: 2,
   },
   logoText: {
     fontSize: 32,
@@ -127,16 +184,19 @@ const styles = {
     borderColor: 'gray',
     padding: 5,
   },
-  passwordIcon: {
-    width: 20,
-    height: 20,
-    marginLeft: 10,
-    marginTop: 5,
+  genderButtons: {
+    marginTop:20,
+    marginBottom:20,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
-  errorText: {
-    color: 'red',
-    fontSize: 16,
-    marginBottom: 0,
+  genderButton: {
+    flex: 1,
+    borderWidth: 1,
+    borderColor: 'gray',
+    padding: 10,
+    alignItems: 'center',
+    borderRadius: 30,
   },
   button: {
     backgroundColor: '#3D3D4C',
@@ -152,5 +212,11 @@ const styles = {
     color: '#FFFFFF',
     fontSize: 20,
   },
-};
+  errorText: {
+    color: 'red',
+    fontSize: 16,
+    marginTop: 10,
+  },
+});
+
 export default RegisterScreen2;
