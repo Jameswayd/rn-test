@@ -7,6 +7,7 @@ import {
   TextInput,
   TouchableOpacity,
   Image,
+  StyleSheet,
 } from 'react-native';
 
 const RegisterScreen = () => {
@@ -22,7 +23,35 @@ const RegisterScreen = () => {
   const [isNameValid, setNameValid] = useState(true);
   const [isPhoneNumberValid, setPhoneNumberValid] = useState(true);
   const [isEmailValid, setEmailValid] = useState(true);
+  const [isPasswordValid, setPasswordValid] = useState(true);
   const navigation = useNavigation();
+
+  const validateName = () => {
+    if (name.trim() === '') {
+      setNameValid(false);
+      isValid = false;
+    } else {
+      setNameValid(true);
+    }
+  };
+
+  const validatePhoneNumber = () => {
+    if (phoneNumber.trim() === '') {
+      setPhoneNumberValid(false);
+      isValid = false;
+    } else {
+      setPhoneNumberValid(true);
+    }
+  };
+
+  const validateEmail = () => {
+    if (email.trim() === '') {
+      setEmailValid(false);
+      isValid = false;
+    } else {
+      setEmailValid(true);
+    }
+  };
 
   const checkPasswordMatch = () => {
     if (password !== confirmPassword) {
@@ -36,41 +65,32 @@ const RegisterScreen = () => {
 
   const togglePasswordVisibility = () => {
     setPasswordVisible(!isPasswordVisible);
-    checkPasswordMatch();
   };
 
   const togglePassword2Visibility = () => {
     setPassword2Visible(!isPassword2Visible);
-    checkPasswordMatch();
   };
+
   const Registercheck = () => {
+    let isValid = true; // 在這裡初始化 isValid 變數
+    validateName();
+    validatePhoneNumber();
+    validateEmail();
     checkPasswordMatch();
-    navigation.navigate('註冊二');
-  };
 
-
-  const validateName = () => {
-    if (name.trim() === '') {
-      setNameValid(false);
+    // 檢查密碼是否為空白
+    if (password.trim() === '') {
+      setPasswordValid(false);
+      isValid = false;
     } else {
-      setNameValid(true);
+      setPasswordValid(true);
     }
-  };
 
-  const validatePhoneNumber = () => {
-    if (phoneNumber.trim() === '') {
-      setPhoneNumberValid(false);
-    } else {
-      setPhoneNumberValid(true);
+    if (isValid &&  isPasswordMatch) {
+      // 所有空格都通過驗證，可以跳到下一個畫面
+      navigation.navigate('註冊二');
     }
-  };
-
-  const validateEmail = () => {
-    if (email.trim() === '') {
-      setEmailValid(false);
-    } else {
-      setEmailValid(true);
-    }
+  
   };
 
   return (
@@ -82,9 +102,7 @@ const RegisterScreen = () => {
               source={require('./assets/Login-medicine.png')}
               style={styles.logo}
             />
-            <Text style={styles.logoText}>
-              藥你健康
-            </Text>
+            <Text style={styles.logoText}>藥你健康</Text>
           </View>
           <Text style={styles.pageTitle}>Create Account</Text>
         </View>
@@ -95,10 +113,8 @@ const RegisterScreen = () => {
               placeholder=""
               style={styles.input}
               value={name}
-              onChangeText={(text) => {
-                setName(text);
-                validateName();
-              }}
+              onChangeText={(text) => setName(text)}
+              onBlur={validateName}
             />
             {!isNameValid && (
               <Text style={styles.errorText}>姓名不能是空白</Text>
@@ -110,10 +126,8 @@ const RegisterScreen = () => {
               placeholder=""
               style={styles.input}
               value={phoneNumber}
-              onChangeText={(text) => {
-                setPhoneNumber(text);
-                validatePhoneNumber();
-              }}
+              onChangeText={(text) => setPhoneNumber(text)}
+              onBlur={validatePhoneNumber}
             />
             {!isPhoneNumberValid && (
               <Text style={styles.errorText}>電話號碼不能是空白</Text>
@@ -125,10 +139,8 @@ const RegisterScreen = () => {
               placeholder=""
               style={styles.input}
               value={email}
-              onChangeText={(text) => {
-                setEmail(text);
-                validateEmail();
-              }}
+              onChangeText={(text) => setEmail(text)}
+              onBlur={validateEmail}
             />
             {!isEmailValid && (
               <Text style={styles.errorText}>Email不能是空白</Text>
@@ -136,48 +148,53 @@ const RegisterScreen = () => {
           </View>
           <View style={styles.formGroup}>
             <Text style={styles.label}>密碼
-              <TouchableOpacity onPress={togglePasswordVisibility}>
-                <Image
-                  source={
-                    isPasswordVisible
-                      ? require('./assets/fluent_eye-off-16-filled.png')
-                      : require('./assets/fluent_eye-24-filled.png')
-                  }
-                  style={styles.passwordIcon}
-                />
-              </TouchableOpacity>
+            <TouchableOpacity onPress={togglePasswordVisibility}>
+              <Image
+                source={
+                  isPasswordVisible
+                    ? require('./assets/fluent_eye-off-16-filled.png')
+                    : require('./assets/fluent_eye-24-filled.png')
+                }
+                style={styles.passwordIcon}
+              />
+            </TouchableOpacity>
             </Text>
             <View>
-              <TextInput
-                placeholder=""
-                secureTextEntry={!isPasswordVisible}
-                style={styles.input}
-                value={password}
-                onChangeText={setPassword}
-              />
+            <TextInput
+              placeholder=""
+              secureTextEntry={!isPasswordVisible}
+              style={styles.input}
+              value={password}
+              onChangeText={setPassword}
+              onBlur={() => setPasswordValid(true)} // 清除密碼錯誤訊息
+            />
             </View>
+            {!isPasswordValid && (
+              <Text style={styles.errorText}>密碼不能是空白</Text>
+            )}
           </View>
           <View style={styles.formGroup}>
             <Text style={styles.label}>再次確認密碼
-              <TouchableOpacity onPress={togglePassword2Visibility}>
-                <Image
-                  source={
-                    isPassword2Visible
-                      ? require('./assets/fluent_eye-off-16-filled.png')
-                      : require('./assets/fluent_eye-24-filled.png')
-                  }
-                  style={styles.passwordIcon}
-                />
-              </TouchableOpacity>
+            <TouchableOpacity onPress={togglePassword2Visibility}>
+              <Image
+                source={
+                  isPassword2Visible
+                    ? require('./assets/fluent_eye-off-16-filled.png')
+                    : require('./assets/fluent_eye-24-filled.png')
+                }
+                style={styles.passwordIcon}
+              />
+            </TouchableOpacity>
             </Text>
             <View>
-              <TextInput
-                placeholder=""
-                secureTextEntry={!isPassword2Visible}
-                style={styles.input}
-                value={confirmPassword}
-                onChangeText={setConfirmPassword}
-              />
+            <TextInput
+              placeholder=""
+              secureTextEntry={!isPassword2Visible}
+              style={styles.input}
+              value={confirmPassword}
+              onChangeText={setConfirmPassword}
+              onBlur={checkPasswordMatch} // 驗證密碼匹配並設定錯誤訊息
+            />
             </View>
             {!isPasswordMatch && (
               <Text style={styles.errorText}>{errorMessage}</Text>
@@ -191,7 +208,6 @@ const RegisterScreen = () => {
     </View>
   );
 };
-
 const styles = {
   container: {
     flex: 1,
@@ -237,7 +253,7 @@ const styles = {
     width: 20,
     height: 20,
     marginLeft: 10,
-    marginTop: 5,
+    marginTop: 10,
   },
   errorText: {
     color: 'red',
