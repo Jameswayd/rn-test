@@ -6,6 +6,7 @@ import LoginScreen from './LoginScreen.js';
 import Registration_interface from './Registration_interface.js';
 import Registration_interface2 from './Registration_interface2.js';
 import Registration_interface3 from './Registration_interface3.js';
+import Diet_management from './Diet_management.js'
 
 const Stack = createStackNavigator();
 
@@ -37,6 +38,10 @@ function App() {
         <Stack.Screen
           name="註冊三"
           component={Registration_interface3}
+        />
+        <Stack.Screen
+          name="飲食管理"
+          component={Diet_management}
         />
       </Stack.Navigator>
     </NavigationContainer>

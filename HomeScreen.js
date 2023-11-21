@@ -4,12 +4,8 @@ import { useNavigation } from '@react-navigation/native';
 
 const HomeScreen = () => {
   const [selected, setSelected] = useState('');
+  const navigation = useNavigation();
 
-  const handleSelect = (item) => {
-    setSelected(item);
-    //navigateToPage(item);
-  };
-  {/*
   const navigateToPage = (page) => {
     switch (page) {
       case '設定':
@@ -21,14 +17,19 @@ const HomeScreen = () => {
       case '藥品管理':
         navigation.navigate('Medication');
         break;
-      case '預約約診功能':
-        navigation.navigate('Appointment');
+      case '飲食管理':
+        navigation.navigate('飲食管理');
         break;
       default:
         break;
     }
   };
- */}
+
+  const handleSelect = (item) => {
+    setSelected(item);
+    navigateToPage(item);
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.selectBar}>
@@ -50,9 +51,9 @@ const HomeScreen = () => {
             <Image source={require('./assets/Medicine.png')} style={styles.buttonImage} />
             <Text style={styles.buttonText}>藥品管理</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={[styles.button, selected === '預約約診功能' && styles.selectedButton]} onPress={() => handleSelect('預約約診功能')}>
+          <TouchableOpacity style={[styles.button, selected === '飲食管理' && styles.selectedButton]} onPress={() => handleSelect('飲食管理')}>
             <Image source={require('./assets/Calendar-Approved.png')} style={styles.buttonImage} />
-            <Text style={styles.buttonText}>預約約診</Text>
+            <Text style={styles.buttonText}>飲食管理</Text>
           </TouchableOpacity>
         </View>
       </View>
