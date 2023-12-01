@@ -64,7 +64,7 @@ const RegisterScreen2 = () => {
               藥你健康
             </Text>
           </View>
-          <Text style={styles.pageTitle}>Create Account</Text>
+          <Text style={styles.pageTitle}>建立帳號 - 2</Text>
         </View>
         <View style={styles.formContainer}>
           <View style={styles.formGroup}>

@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 
 const RegisterScreen = () => {
+  const [isValid, setIsValid] = useState(false);
   const [isPasswordVisible, setPasswordVisible] = useState(false);
   const [isPassword2Visible, setPassword2Visible] = useState(false);
   const [password, setPassword] = useState('');
@@ -27,30 +28,18 @@ const RegisterScreen = () => {
   const navigation = useNavigation();
 
   const validateName = () => {
-    if (name.trim() === '') {
-      setNameValid(false);
-      isValid = false;
-    } else {
-      setNameValid(true);
-    }
+    setNameValid(name.trim() !== '');
+    setIsValid(name.trim() !== '');
   };
 
   const validatePhoneNumber = () => {
-    if (phoneNumber.trim() === '') {
-      setPhoneNumberValid(false);
-      isValid = false;
-    } else {
-      setPhoneNumberValid(true);
-    }
+    setPhoneNumberValid(phoneNumber.trim() !== '');
+    setIsValid(phoneNumber.trim() !== '');
   };
 
   const validateEmail = () => {
-    if (email.trim() === '') {
-      setEmailValid(false);
-      isValid = false;
-    } else {
-      setEmailValid(true);
-    }
+    setEmailValid(email.trim() !== '');
+    setIsValid(email.trim() !== '');
   };
 
   const checkPasswordMatch = () => {
@@ -72,25 +61,22 @@ const RegisterScreen = () => {
   };
 
   const Registercheck = () => {
-    let isValid = true; // 在這裡初始化 isValid 變數
     validateName();
     validatePhoneNumber();
     validateEmail();
+
+    setPasswordValid(password.trim() !== '');
     checkPasswordMatch();
 
-    // 檢查密碼是否為空白
-    if (password.trim() === '') {
-      setPasswordValid(false);
-      isValid = false;
-    } else {
-      setPasswordValid(true);
-    }
+    // 更新 isValid
+    const isValidated =
+      isNameValid && isPhoneNumberValid && isEmailValid && isPasswordValid && isPasswordMatch;
 
-    if (isValid &&  isPasswordMatch) {
-      // 所有空格都通過驗證，可以跳到下一個畫面
+    if (isValidated) {
+      // 清除错误消息
+      setErrorMessage('');
       navigation.navigate('註冊二');
     }
-  
   };
 
   return (
@@ -104,7 +90,7 @@ const RegisterScreen = () => {
             />
             <Text style={styles.logoText}>藥你健康</Text>
           </View>
-          <Text style={styles.pageTitle}>Create Account</Text>
+          <Text style={styles.pageTitle}>建立帳號</Text>
         </View>
         <View style={styles.formContainer}>
           <View style={styles.formGroup}>
@@ -196,6 +182,9 @@ const RegisterScreen = () => {
               onBlur={checkPasswordMatch} // 驗證密碼匹配並設定錯誤訊息
             />
             </View>
+            {!isPasswordValid && (
+              <Text style={styles.errorText}>密碼不能是空白</Text>
+            )}
             {!isPasswordMatch && (
               <Text style={styles.errorText}>{errorMessage}</Text>
             )}
