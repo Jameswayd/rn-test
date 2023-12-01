@@ -49,7 +49,7 @@ export function Login_Screen() {
             style={styles.input}
             onChangeText={setPassword}
             value={password}
-            placeholder=" Password"
+            placeholder="密碼"
             secureTextEntry
           />
           <View style={styles.row}>
@@ -61,28 +61,28 @@ export function Login_Screen() {
                 <Text style={styles.checkboxText}>✓</Text>
               ) : null}
             </TouchableOpacity>
-            <Text style={styles.checkboxText}>Remember me</Text>
+            <Text style={styles.checkboxText}>保持登入</Text>
             <Text
               style={styles.forgotPassword}
               onPress={handleForgotPassword}
             >
-              Forgot password
+              忘記密碼
             </Text>
           </View>
           {error && (
-            <Text style={styles.errorText}>Invalid email or password</Text>
+            <Text style={styles.errorText}>錯誤的帳號或是密碼</Text>
           )}
         </View>
         <TouchableOpacity style={styles.button} onPress={handleLogin}>
-          <Text style={styles.buttonText}>Login</Text>
+          <Text style={styles.buttonText}>登入</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.button} onPress={handleCreateAccount}>
-          <Text style={styles.buttonText}>Create account</Text>
+          <Text style={styles.buttonText}>建立帳號</Text>
         </TouchableOpacity>
         <View style={styles.line} />
         <View style={styles.socialButtonsContainer}>
           <TouchableOpacity style={styles.socialButton}>
-            <Image source={require('./assets/twitter.png')} style={styles.socialIcon} />
+            <Image source={require('./assets/Facebook.png')} style={styles.socialIcon} />
           </TouchableOpacity>
           <TouchableOpacity style={styles.socialButton}>
             <Image source={require('./assets/google.png')} style={styles.socialIcon} />

@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import { useNavigation } from '@react-navigation/native';
 
 const DietScreen = () => {
   const [chosenDate, setChosenDate] = useState(new Date());
   const [showDatePicker, setShowDatePicker] = useState(true);
+  const navigation = useNavigation();
 
   const handleDateChange = (event, selectedDate) => {
     if (selectedDate) {
@@ -17,12 +19,12 @@ const DietScreen = () => {
   }, []); // 只在初始渲染時觸發
 
   const [foodItems, setFoodItems] = useState([
-    { type: 'vegetables', name: 'Vegetables', count: 0, dailyRecommendation: 3, goal: 10 },
-    { type: 'fruits', name: 'Fruits', count: 0, dailyRecommendation: 2, goal: 10 },
-    { type: 'meat', name: 'Meat', count: 0, dailyRecommendation: 2, goal: 10 },
-    { type: 'rice', name: 'Rice', count: 0, dailyRecommendation: 2, goal: 10 },
-    { type: 'seafood', name: 'Seafood', count: 0, dailyRecommendation: 2, goal: 10 },
-    { type: 'dairy', name: 'Dairy', count: 0, dailyRecommendation: 2, goal: 10 },
+    { type: 'vegetables', name: '蔬菜', count: 0, dailyRecommendation: 4, goal: 5 },
+    { type: 'fruits', name: '水果', count: 0, dailyRecommendation:3, goal: 4 },
+    { type: 'meat', name: '肉類', count: 0, dailyRecommendation: 3, goal: 3},
+    { type: 'rice', name: '米飯', count: 0, dailyRecommendation: 3, goal: 3 },
+    { type: 'seafood', name: '海鮮', count: 0, dailyRecommendation: 2, goal: 1 },
+    { type: 'dairy', name: '乳製品', count: 0, dailyRecommendation: 2, goal: 1 },
   ]);
 
   const handleAdd = (type) => {
@@ -43,7 +45,7 @@ const DietScreen = () => {
           <Image source={require('./assets/date.png')} style={styles.iconImage} />
         </View>
         <View style={styles.dateText}>
-          <Text style={styles.dateTextContent}>Select Date:</Text>
+          <Text style={styles.dateTextContent}>選擇日期 :</Text>
         </View>
         <View style={styles.dateTimePicker}>
           {showDatePicker && (
@@ -68,15 +70,18 @@ const DietScreen = () => {
             (item.type === 'dairy' && <Image source={require('./assets/dairy.png')} style={styles.foodImage} />)}
           <View style={styles.details}>
             <Text style={styles.text_title}>{item.name}</Text>
-            <Text style={styles.text_content}>Total Today: {item.count}</Text>
-            <Text style={styles.text_content} key={item.type}>{item.name} Goal: {item.goal}</Text>
-            <Text style={styles.text_content}>Daily Recommendation: {item.dailyRecommendation}</Text>
+            <Text style={styles.text_content}>今日食用量: {item.count}</Text>
+            <Text style={styles.text_content}>設定目標: {item.goal}</Text>
+            <Text style={styles.text_content}>每日食用量建議: {item.dailyRecommendation}</Text>
             <TouchableOpacity onPress={() => handleAdd(item.type)} style={styles.addButton}>
-              <Text style={styles.buttonText}>Add</Text>
+              <Text style={styles.buttonText}>增加</Text>
             </TouchableOpacity>
           </View>
         </View>
       ))}
+       <TouchableOpacity onPress={() => navigation.navigate('設定飲食量')} style={styles.bottomButton}>
+        <Text style={styles.buttonText2}>設定今日目標</Text>
+      </TouchableOpacity>
     </ScrollView>
   );
 };
@@ -134,6 +139,8 @@ const styles = StyleSheet.create({
     borderColor: 'white',
     backgroundColor: '#ECF5FF',
     borderRadius: 30,
+    marginLeft:5,
+    marginRight:5,
   },
   foodImage: {
     width: 90,
@@ -170,6 +177,21 @@ const styles = StyleSheet.create({
   buttonText: {
     color: '#FFFFFF',
     fontSize: 15,
+  },
+  buttonText2: {
+    color: '#FFFFFF',
+    fontSize: 20,
+  },
+  bottomButton: {
+    backgroundColor: '#3D3D4C',
+    borderRadius: 30,
+    marginTop:10,
+    padding: 10,
+    width: '80%',
+    alignItems: 'center',
+    marginRight: '10%',
+    marginLeft: '10%',
+    marginBottom: 10,
   },
 });
 

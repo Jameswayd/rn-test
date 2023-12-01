@@ -9,7 +9,7 @@ const HomeScreen = () => {
   const navigateToPage = (page) => {
     switch (page) {
       case '設定':
-        navigation.navigate('Settings');
+        navigation.navigate('設定');
         break;
       case '健康數據紀錄':
         navigation.navigate('HealthData');
@@ -33,7 +33,7 @@ const HomeScreen = () => {
   return (
     <View style={styles.container}>
       <View style={styles.selectBar}>
-        <Text style={styles.selectText}>Select function</Text>
+        <Text style={styles.selectText}>選擇功能</Text>
       </View>
       <View style={styles.buttonContainer}>
         <View style={styles.row}>
