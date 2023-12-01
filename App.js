@@ -1,19 +1,33 @@
-import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+import React, { useState, useEffect } from 'react';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from './HomeScreen.js';
 import LoginScreen from './LoginScreen.js';
 import Registration_interface from './Registration_interface.js';
 import Registration_interface2 from './Registration_interface2.js';
 import Registration_interface3 from './Registration_interface3.js';
-import Diet_management from './Diet_management.js'
+import Diet_management from './Diet_management.js';
+import Settings from './Settings.js';
+import Settingsdiet from './settingsdiet.js';
+
 
 const Stack = createStackNavigator();
 
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: 'white',
+          },
+          headerTitleStyle: {
+            color: 'black',
+            fontSize: 20,
+          },
+          headerTintColor: 'black',
+        }}
+      >
         <Stack.Screen
           name="登入"
           component={LoginScreen}
@@ -43,10 +57,17 @@ function App() {
           name="飲食管理"
           component={Diet_management}
         />
+        <Stack.Screen
+          name="設定"
+          component={Settings}
+        />
+        <Stack.Screen
+          name="設定飲食量"
+          component={Settingsdiet}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
 
 export default App;
-
