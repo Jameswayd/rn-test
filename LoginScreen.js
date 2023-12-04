@@ -22,6 +22,9 @@ export function Login_Screen() {
       setError(true);
     }
   };
+  const noAccountUse = () => {
+    navigation.navigate('Home');
+  }
 
   const handleForgotPassword = () => {
     // 處理忘記密碼邏輯
@@ -75,6 +78,9 @@ export function Login_Screen() {
         </View>
         <TouchableOpacity style={styles.button} onPress={handleLogin}>
           <Text style={styles.buttonText}>登入</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={noAccountUse}>
+          <Text style={styles.buttonText}>直接使用</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.button} onPress={handleCreateAccount}>
           <Text style={styles.buttonText}>建立帳號</Text>

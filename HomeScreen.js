@@ -12,10 +12,10 @@ const HomeScreen = () => {
         navigation.navigate('設定');
         break;
       case '健康數據紀錄':
-        navigation.navigate('HealthData');
+        navigation.navigate('健康數據紀錄');
         break;
       case '藥品管理':
-        navigation.navigate('Medication');
+        navigation.navigate('MainScreen');
         break;
       case '飲食管理':
         navigation.navigate('飲食管理');
