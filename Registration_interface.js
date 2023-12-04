@@ -64,16 +64,17 @@ const RegisterScreen = () => {
     validateName();
     validatePhoneNumber();
     validateEmail();
-
+  
     setPasswordValid(password.trim() !== '');
     checkPasswordMatch();
-
-    // 更新 isValid
+  
+    // Update isValid
     const isValidated =
-      isNameValid && isPhoneNumberValid && isEmailValid && isPasswordValid && isPasswordMatch;
-
+      isNameValid && isPhoneNumberValid && isEmailValid && isPasswordValid && isPasswordMatch &&
+      name.trim() !== '' && phoneNumber.trim() !== '' && email.trim() !== '';
+  
     if (isValidated) {
-      // 清除错误消息
+      // Clear error message
       setErrorMessage('');
       navigation.navigate('註冊二');
     }
