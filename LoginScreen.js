@@ -44,7 +44,7 @@ export function Login_Screen() {
             style={styles.input}
             onChangeText={setEmail}
             value={email}
-            placeholder=" Email-ID"
+            placeholder=" Email or ID"
             keyboardType="email-address"
             autoCapitalize="none"
           />

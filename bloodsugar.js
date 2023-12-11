@@ -74,7 +74,7 @@ function HealthDataInput() {
         </View>
   
         <TouchableOpacity style={styles.button} onPress={recordBloodSugar}>
-          <Text style={styles.buttonText}>Record Blood Sugar</Text>
+          <Text style={styles.buttonText}>紀錄血糖</Text>
         </TouchableOpacity>
   
         {showImage && (
